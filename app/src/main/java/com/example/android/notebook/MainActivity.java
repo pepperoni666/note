@@ -1,5 +1,6 @@
 package com.example.android.notebook;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,16 +14,31 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView list;
     FloatingActionButton fab;
-    private String[] notes = {"one", "two", "three"};
+    private List<String> notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notes = new ArrayList<>();
+
+        final AddDatabase db = Room.databaseBuilder(getApplicationContext(), AddDatabase.class, "name")
+                .allowMainThreadQueries()
+                .build();
+
+        List<Note> all = db.noteDao().getListOfNotes();
+
+        for(Note x : all){
+            notes.add(x.getTitle());
+        }
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -32,11 +48,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        list();
-    }
 
-    public void list(){
-        list = (ListView) findViewById(R.id.all_notes);
+        list = findViewById(R.id.all_notes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.notes, notes);
         list.setAdapter(adapter);
     }
