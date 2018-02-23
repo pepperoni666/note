@@ -4,20 +4,15 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.List;
 
 /**
  * Created by peret on 22.02.2018.
  */
 
 public class CreateNote extends AppCompatActivity {
-
-    private static final String TAG = "CreateNote";
 
     EditText note_title;
     EditText note_text;

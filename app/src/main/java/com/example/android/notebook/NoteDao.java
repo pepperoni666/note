@@ -14,6 +14,9 @@ public interface NoteDao {
     @Query("SELECT * FROM Note")
     List<Note> getListOfNotes();
 
+    @Query("SELECT * FROM Note WHERE nr LIKE :i")
+    Note getOneNote(int i);
+
     @Insert
     void addNote(Note... note);
 }
