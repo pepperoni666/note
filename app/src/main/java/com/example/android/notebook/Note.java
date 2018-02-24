@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Note {
     @PrimaryKey(autoGenerate = true)
-    private int nr;
+    private int id;
 
     private String title;
 
@@ -20,8 +20,12 @@ public class Note {
         this.text = text;
     }
 
-    public int getNr() {
-        return nr;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -30,9 +34,5 @@ public class Note {
 
     public String getText() {
         return text;
-    }
-
-    public void setNr(int nr) {
-        this.nr = nr;
     }
 }

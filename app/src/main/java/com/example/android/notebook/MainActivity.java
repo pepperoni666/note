@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        //db.noteDao().dropAll();
+
         List<Note> all = db.noteDao().getListOfNotes();
 
         for(Note x : all){
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MainActivity.this, EditNote.class).putExtra("note", i));
+                startActivity(new Intent(MainActivity.this, EditNote.class).putExtra("note", notes.get(i)));
             }
         });
     }

@@ -1,8 +1,11 @@
 package com.example.android.notebook;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -12,6 +15,7 @@ import android.widget.TextView;
 public class EditNote extends AppCompatActivity{
     TextView note_title;
     TextView note_text;
+    Button del;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +26,24 @@ public class EditNote extends AppCompatActivity{
                 .allowMainThreadQueries()
                 .build();
 
-        int nr = getIntent().getExtras().getInt("note");
+        final String id = getIntent().getStringExtra("note");
 
         note_title = findViewById(R.id.actTitle);
         note_text = findViewById(R.id.actText);
+        del = findViewById(R.id.delete);
 
-        Note note = db.noteDao().getOneNote(nr+1);
+        Note note = db.noteDao().getOneNote(id);
 
         note_title.setText(note.getTitle());
         note_text.setText(note.getText());
+
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.noteDao().removeNote(id);
+                startActivity(new Intent(EditNote.this, MainActivity.class));
+            }
+        });
+
     }
 }
