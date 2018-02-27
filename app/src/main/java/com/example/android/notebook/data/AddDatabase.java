@@ -1,4 +1,4 @@
-package com.example.android.notebook;
+package com.example.android.notebook.data;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;

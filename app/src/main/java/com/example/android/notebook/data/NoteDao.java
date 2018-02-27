@@ -1,7 +1,9 @@
-package com.example.android.notebook;
+package com.example.android.notebook.data;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
@@ -17,12 +19,12 @@ public interface NoteDao {
     @Query("SELECT * FROM Note WHERE title LIKE :s")
     Note getOneNote(String s);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addNote(Note... note);
 
     @Query("DELETE FROM Note")
     void dropAll();
 
-    @Query("DELETE FROM Note WHERE title LIKE :s")
-    void removeNote(String s);
+    @Delete
+    void removeNote(Note note);
 }

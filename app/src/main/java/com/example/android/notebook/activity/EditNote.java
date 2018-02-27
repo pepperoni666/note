@@ -1,4 +1,4 @@
-package com.example.android.notebook;
+package com.example.android.notebook.activity;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.android.notebook.R;
+import com.example.android.notebook.data.AddDatabase;
+import com.example.android.notebook.data.Note;
 
 /**
  * Created by peret on 22.02.2018.

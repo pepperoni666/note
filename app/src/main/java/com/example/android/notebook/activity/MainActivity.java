@@ -1,4 +1,4 @@
-package com.example.android.notebook;
+package com.example.android.notebook.activity;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.android.notebook.R;
+import com.example.android.notebook.data.AddDatabase;
+import com.example.android.notebook.data.Note;
 
 import java.util.ArrayList;
 import java.util.List;
